@@ -2,6 +2,29 @@
 
 `rotten_scraper` is a Python-based web scraping tool designed to extract movie data from box office rankings and a popular movie review aggregate website. The extracted data is stored in a MongoDB database for further analysis and insights.
 
+## Setup Instructions
+
+### 1. Clone the repository
+
+```
+git clone https://github.com/andrewuebe/rotten_scraper.git
+cd rotten_scraper
+```
+
+### 2. Create and activate a virtual environment
+
+To create a virtual environment:
+
+`python -m venv venv`
+
+To activate the virtual environment:
+
+`source venv/bin/activate`
+
+### 3. Activate dependencies
+
+`pip install -r requirements.txt`
+
 ## Project Overview
 
 ### 1. MongoDB Interaction:
