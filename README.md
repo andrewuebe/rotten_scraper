@@ -1,6 +1,6 @@
 # Rotten Scraper
 
-`rotten_scraper` is a Python-based web scraping tool designed to extract movie data from box office rankings and a popular movie review aggregate website. The extracted data is stored in a MongoDB database for further analysis and insights.
+`rotten_scraper` is a Python-based web scraping tool designed to collect data from a popular movie review aggregate website. The extracted data is stored in a MongoDB database for further analysis and insights.
 
 ## Setup Instructions
 
@@ -25,6 +25,19 @@ To activate the virtual environment:
 
 `pip install -r requirements.txt`
 
+## Usage
+
+To run the script, you can use the following command, replacing `[OPTIONS]` with the options flags below:
+`python main.py [OPTIONS]`
+
+### Options flags:
+1. `--delete-copies`: this will identify and remove movies with duplicate titles from your database.
+2. `--scrape:<endMovieYear`: This option will start the scraping process for movies up to the specified year. Replace `<endMovieYear` with the desired end year. For example, to scrape movies up to the year 2020 (not including that year), you would use `--scrape:2020`.
+
+You can use both options together, and in any order, but the scripts will run in the order they appear in the list above.
+
+`python main.py --delete-copies --scrape:2020`
+
 ## Project Overview
 
 ### 1. MongoDB Interaction:
@@ -44,10 +57,6 @@ To activate the virtual environment:
 
 ### 4. Maintenance:
 - A separate script to periodically update older movies' rt_scores in the database.
-
-## Usage
-
-Detailed instructions on setting up and running the scraper will be added as the project develops.
 
 ## Contribution
 
