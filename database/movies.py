@@ -32,7 +32,7 @@ def insert_movie(movie_data):
   print(f"Inserting {movie_data['title']} ({movie_data['year']}) - rank: {movie_data['box_office_rank']}", "\n=============================")
   result = movies_collection.insert_one(movie_data)
   if result.acknowledged:
-      print(f"Movie inserted with ID: {result.inserted_id}")
+      print(f"Movie inserted with ID: {result.inserted_id}\n")
   else:
       print("Error inserting movie")
 
@@ -42,6 +42,7 @@ def update_movie(movie_id, updated_movie_data):
   print("Updating movie", "\n=============================")
 
 def delete_movies_with_duplicate_titles():
+  moviesCollection = db['movies']
   documents = list(moviesCollection.find().sort("title"))
 
   i = 0
@@ -50,10 +51,10 @@ def delete_movies_with_duplicate_titles():
     if documents[i]['title'] == documents[i+1]['title']:
         # Compare box_office_rank
         if documents[i]['box_office_rank'] < documents[i+1]['box_office_rank']:
-            collection.delete_one({'_id': documents[i]['_id']})
+            moviesCollection.delete_one({'_id': documents[i]['_id']})
         else:
-            collection.delete_one({'_id': documents[i+1]['_id']})
+            moviesCollection.delete_one({'_id': documents[i+1]['_id']})
         # Refresh the list after a deletion
-        documents = list(collection.find().sort("title"))
+        documents = list(moviesCollection.find().sort("title"))
     else:
         i += 1
